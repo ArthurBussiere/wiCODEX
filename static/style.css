@@ -1,0 +1,58 @@
+
+
+body{
+    background-color: rgb(27, 3, 47);
+    color: aliceblue;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+main{
+    display: flex;
+}
+
+#navbar {
+    display:flex;
+    font-size: larger;
+}
+
+#navbar ul {
+    display: flex;
+}
+#navbar li {
+    color: rgb(132, 137, 141);
+    list-style-type: none;
+    align-self: center;
+    margin: 0 15px;
+}
+
+#navbar .title_header {
+    font-weight: 1000; 
+    margin-right: 50px; 
+    margin-left: 0;
+    color: aliceblue;
+}
+#navbar li:hover {color: aliceblue;}
+
+
+#article_section {
+    width : 65%;
+    background-color: rgb(8, 1, 14);
+    padding : 10px;
+    /* display:flex; */
+    flex-direction: column;
+}
+
+/* #title_article{
+    padding: 5px;
+    background-color: aliceblue;
+}
+
+#title_article::selection{
+    color: rgb(84, 84, 195);
+    background-color:rgb(84, 84, 195);
+} */
+
+
+#guess_section {
+    width:35%;
+}

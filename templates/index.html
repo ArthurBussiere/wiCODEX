@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href={{ url_for('static', filename='style.css') }} rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <header>
+            <nav id="navbar">
+                <ul>
+                    <li class="title_header">Redactle</li>
+                    <li>Aide</li>
+                    <li>Statistiques</li>
+                    <li>Parametres</li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <div id="article_section">
+                <div>
+                    <div id="title_article">{{new_article[0]}}</div>
+                </div>
+                <div>
+                    <p>{{new_article[1]}}</p>
+                </div>
+            </div>
+            <div id="guess_section">
+                <table> 
+                    <thead>
+                        <tr>
+                             <th style="width: 15%;"> # </th>
+                             <th style="width: 70%;"> Mots </th>
+                             <th style="width: 15%;"> Hits </th>    
+                        </tr>
+                    </thead>
+                    <tbody id="guess_table" >
+            </div>
+        </main>
+        <footer>
+            <form>
+                <input >
+            </form>
+        </footer>
+    </body>
+</html>
