@@ -7,7 +7,7 @@
         <header>
             <nav id="navbar">
                 <ul>
-                    <li class="title_header">Redactle</li>
+                    <li class="title_header">DICODEX</li>
                     <li>Aide</li>
                     <li>Statistiques</li>
                     <li>Parametres</li>
@@ -17,10 +17,13 @@
         <main>
             <div id="article_section">
                 <div>
-                    <div id="title_article">{{new_article[0]}}</div>
+                    <h1 id="title_article">{{new_article[0]}}</h1>
                 </div>
                 <div>
-                    <p>{{new_article[1]}}</p>
+
+                    <p id="content-article">{{new_article[1]}}</p>
+                    </div>
+
                 </div>
             </div>
             <div id="guess_section">
@@ -32,13 +35,58 @@
                              <th style="width: 15%;"> Hits </th>    
                         </tr>
                     </thead>
-                    <tbody id="guess_table" >
+                    <tbody id="guess_table">
+                    </tbody>
+                </table>
             </div>
         </main>
         <footer>
-            <form>
-                <input >
+            
+            <form name="add_word" id="guess_form"  onsubmit="newWord(event, this);return false" autocomplete="off">
+                <button id="up_button"><a href="#">Haut</a></button>
+                <input type="text" id="word">
+                <button id="up_button">Entrez</button>
             </form>
         </footer>
     </body>
+
+
+    <script>
+        var guessedWord =  [];
+        const contentArticle = (document.getElementById('content-article').textContent.toLowerCase()).normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+        function newWord() {
+
+            var word = document.getElementById('word').value.toLowerCase()
+            word = word.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            word = word.replace(/\s/g, '');
+
+            if (!(word.length === 0)){
+
+                if (guessedWord.includes(word)) {
+
+                    //do your code to hightlight already guessed Word in table
+
+                    }else{guessedWord.push(word)}
+
+                let html=""
+
+                for (const [i, word] of guessedWord.entries()) {
+                    console.log(word)
+                    var numHits = countOccurences(contentArticle, word);
+                    html +="<tr>"
+                    html +="<td>"+(i+1)+"</td>"
+                    html +="<td>"+word+"</td>"
+                    html +="<td>"+numHits+"</td>"
+                    guess_table.innerHTML = html
+                }
+            }
+         
+        }
+
+        function countOccurences(string, word) {
+                return string.split(word).length - 1;
+            }
+        
+    </script>
 </html>

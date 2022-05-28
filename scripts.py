@@ -30,9 +30,11 @@ def get_article_from_wiki():
 
     list_words = re.split(r" |(?<=')", ' '.join(raw_list_words))
     list_words = [s.replace('(', '') for s in list_words]
+    list_words = [s.replace('[', '') for s in list_words]
+    list_words = [s.replace(']', '') for s in list_words]
     list_words = [s.replace(')', '') for s in list_words]
     list_words = [s.replace('/', '') for s in list_words]
-    return title_article, list_words
+    return title_article, content_article
 
 
 

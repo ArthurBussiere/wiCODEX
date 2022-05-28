@@ -1,13 +1,39 @@
-
-
 body{
     background-color: rgb(27, 3, 47);
     color: aliceblue;
     font-family: 'Courier New', Courier, monospace;
+    display:flex;
+    flex-direction: column;
+    margin :0 15px 0 2px;
+
+}
+header{
+    position: sticky;
+    top:0%;
+    left:0%;
+    background-color: rgb(27, 3, 47);
 }
 
 main{
     display: flex;
+    width: 100%;
+}
+
+footer{
+    width:70%;
+    position: sticky;
+    height: 50px;
+    bottom:0%;
+    left:0%;
+    z-index:1000;
+    background-color: rgb(27, 3, 47);
+    display:flex;
+    align-content:center;
+    justify-content:center;
+}
+
+#guess_form {
+    margin: 10px 0;
 }
 
 #navbar {
@@ -38,21 +64,19 @@ main{
     width : 65%;
     background-color: rgb(8, 1, 14);
     padding : 10px;
-    /* display:flex; */
     flex-direction: column;
 }
 
-/* #title_article{
-    padding: 5px;
-    background-color: aliceblue;
-}
-
-#title_article::selection{
-    color: rgb(84, 84, 195);
-    background-color:rgb(84, 84, 195);
-} */
-
 
 #guess_section {
-    width:35%;
+    width:32%;
+    position: fixed;
+    top : 60px;
+    right: 0px;
+    margin-right:15px;
+
+}
+
+table{
+    text-align: center;
 }
