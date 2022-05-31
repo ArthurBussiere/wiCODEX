@@ -4,7 +4,7 @@ body{
     font-family: 'Courier New', Courier, monospace;
     display:flex;
     flex-direction: column;
-    margin :0 15px 0 2px;
+    margin :0 5px 0 2px;
 
 }
 header{
@@ -20,12 +20,12 @@ main{
 }
 
 footer{
-    width:70%;
+    width:100%;
     position: sticky;
     height: 50px;
     bottom:0%;
     left:0%;
-    z-index:1000;
+    z-index:2000;
     background-color: rgb(27, 3, 47);
     display:flex;
     align-content:center;
@@ -65,18 +65,51 @@ footer{
     background-color: rgb(8, 1, 14);
     padding : 10px;
     flex-direction: column;
+    line-height:1.5;
+    
 }
-
 
 #guess_section {
     width:32%;
-    position: fixed;
     top : 60px;
     right: 0px;
     margin-right:15px;
-
 }
+
+
+
+
+/* #guess_section thead{
+    position:fixed;
+} */
 
 table{
     text-align: center;
+    width:100%;
+}
+
+mark{
+    color: aliceblue;
+    background-color: aliceblue;
+    user-select: none;
+}
+
+mark::selection{
+    background: rgb(81, 81, 202);
+    color: rgb(81, 81, 202);
+}
+
+.highWord {
+    color: aliceblue;
+    background-color: aliceblue;
+    user-select: none;
+}
+
+.highWord::selection{
+    background: rgb(81, 81, 202);
+    color: rgb(81, 81, 202);
+}
+
+.noHighWord {
+    font-weight: bold;
 }

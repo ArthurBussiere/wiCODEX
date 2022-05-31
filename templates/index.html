@@ -17,13 +17,27 @@
         <main>
             <div id="article_section">
                 <div>
-                    <h1 id="title_article">{{new_article[0]}}</h1>
+                    <h1 id="title_article">
+                        {% for word in new_article[0] %}
+                        <span class="highWord">{{word}}</span>
+                        {% endfor %}
+                    </h1>
                 </div>
-                <div>
-
-                    <p id="content-article">{{new_article[1]}}</p>
+                    <div>
+                        <p id="content-article">
+                            {% for word in new_article[1] %}
+                            {% if word in new_article[2] %}
+                                <span>{{ word }}</span>
+                            {% elif word in new_article[3] %}
+                                <span>{{ word }}</span>
+                            {% else %}
+                                <span class="highWord">{{ word }}</span>
+                            {% endif %}
+                            {% endfor %}
+                        </p>
+                        <br>
+                        <br>
                     </div>
-
                 </div>
             </div>
             <div id="guess_section">
@@ -32,12 +46,17 @@
                         <tr>
                              <th style="width: 15%;"> # </th>
                              <th style="width: 70%;"> Mots </th>
-                             <th style="width: 15%;"> Hits </th>    
+                             <th style="width: 15%;"> Hits </th>  
                         </tr>
+                        
                     </thead>
+                    
                     <tbody id="guess_table">
+        
                     </tbody>
+                    
                 </table>
+                
             </div>
         </main>
         <footer>
@@ -52,6 +71,8 @@
 
 
     <script>
+
+        var spans= document.getElementsByTagName('span')
         var guessedWord =  [];
         const contentArticle = (document.getElementById('content-article').textContent.toLowerCase()).normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
@@ -61,32 +82,79 @@
             word = word.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             word = word.replace(/\s/g, '');
 
-            if (!(word.length === 0)){
 
+            if (word.length != 0){
                 if (guessedWord.includes(word)) {
 
                     //do your code to hightlight already guessed Word in table
 
-                    }else{guessedWord.push(word)}
-
-                let html=""
-
-                for (const [i, word] of guessedWord.entries()) {
-                    console.log(word)
-                    var numHits = countOccurences(contentArticle, word);
-                    html +="<tr>"
-                    html +="<td>"+(i+1)+"</td>"
-                    html +="<td>"+word+"</td>"
-                    html +="<td>"+numHits+"</td>"
-                    guess_table.innerHTML = html
                 }
-            }
-         
+                else {
+                    guessedWord.push(word)
+                }
+                        
+                for (var i = 0, len = spans.length; i < len; ++i) {
+
+                    if ((spans[i].innerHTML).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").length == word.length){
+                
+                        if((spans[i].innerHTML).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").indexOf(word) !== -1){
+                    
+                            spans[i].className = " noHighWord";
+                            var numHits = contentArticle.split(word).length - 1;
+                            console.log(numHits);
+                            showGuessedList(numHits);
+                        }
+                    
+                    }else {
+                        var numHits = 0;
+                        showGuessedList(numHits);
+                    }
+
+                }                
+            }      
         }
 
-        function countOccurences(string, word) {
-                return string.split(word).length - 1;
+        function unHighWord(spans, word) {
+            for (var i = 0, len = spans.length; i < len; ++i) {
+
+                if ((spans[i].innerHTML).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").length == word.length){
+                    if((spans[i].innerHTML).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").indexOf(word) !== -1){
+                    
+                        spans[i].className = " noHighWord"
+                        
+                        
+                    }               
+                }
+            } 
+        }
+
+
+        // function countOccurences(article, word) {
+        //     console.log(article)
+        //     return article.split(word).length - 1;
+        // }
+
+        function showGuessedList(numHits) {
+            let html=""
+            for (const [i, word] of guessedWord.entries()) {
+
+                console.log(numHits)
+                html +="<tr>"
+                html +="<td>"+(i+1)+"</td>"
+                html +="<td>"+word+"</td>"
+                html +="<td>"+numHits+"</td>"
+                html +="</tr>"
+                guess_table.innerHTML = html
             }
+        }
+
+        function formatArticle(article){
+            article = article.replace(/\s*,\s*/g, ",");
+        }
+
+        function unMarkWord(word) {
+
+        }
         
     </script>
 </html>
