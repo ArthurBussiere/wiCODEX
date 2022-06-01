@@ -16,28 +16,51 @@
         </header>
         <main>
             <div id="article_section">
-                <div>
-                    <h1 id="title_article">
-                        {% for word in new_article[0] %}
-                        <span class="highWord">{{word}}</span>
-                        {% endfor %}
-                    </h1>
-                </div>
-                    <div>
-                        <p id="content-article">
-                            {% for word in new_article[1] %}
-                            {% if word in new_article[2] %}
-                                <span>{{ word }}</span>
-                            {% elif word in new_article[3] %}
-                                <span>{{ word }}</span>
-                            {% else %}
-                                <span class="highWord">{{ word }}</span>
-                            {% endif %}
-                            {% endfor %}
-                        </p>
-                        <br>
-                        <br>
-                    </div>
+                <h1 id="title_article">
+                    {% for word in new_article[0] %}
+                    <span class="highWord">{{word}}</span>
+                    {% endfor %}
+                </h1>
+                <div id="content-article">
+                    {% for paragraph in new_article[1] %}                       
+                        {% if paragraph[0] == '==' %}
+                            <p class="article_title2">
+                                {% for word in paragraph %}
+                                    {% if word in new_article[2] %}
+                                        <span>{{ word }}</span>
+                                    {% elif word in new_article[3] %}
+                                        <span>{{ word }}</span>
+                                    {% else %}
+                                        <span class="highWord">{{ word }}</span>
+                                    {% endif %}
+                                {% endfor %}
+                            </p>  
+                        {% elif paragraph[0] == '===' %}
+                            <p class="article_title3">
+                                {% for word in paragraph %}
+                                    {% if word in new_article[2] %}
+                                        <span>{{ word }}</span>
+                                    {% elif word in new_article[3] %}
+                                        <span>{{ word }}</span>
+                                    {% else %}
+                                        <span class="highWord">{{ word }}</span>
+                                    {% endif %}
+                                {% endfor %}
+                            </p>  
+                        {% else %}
+                            <p>
+                                {% for word in paragraph %}
+                                    {% if word in new_article[2] %}
+                                        <span>{{ word }}</span>
+                                    {% elif word in new_article[3] %}
+                                        <span>{{ word }}</span>
+                                    {% else %}
+                                        <span class="highWord">{{ word }}</span>
+                                    {% endif %}
+                                {% endfor %}
+                            </p>
+                        {% endif %} 
+                    {% endfor %}
                 </div>
             </div>
             <div id="guess_section">
@@ -47,23 +70,16 @@
                              <th style="width: 15%;"> # </th>
                              <th style="width: 70%;"> Mots </th>
                              <th style="width: 15%;"> Hits </th>  
-                        </tr>
-                        
+                        </tr>                        
                     </thead>
-                    
-                    <tbody id="guess_table">
-        
-                    </tbody>
-                    
+                    <tbody id="guess_table"></tbody>  
                 </table>
-                
             </div>
         </main>
         <footer>
-            
             <form name="add_word" id="guess_form" onsubmit="newWord(event, this)">
                 <button id="up_button"><a href="#">Haut</a></button>
-                <input type="text" id="word" autocomplete="off">
+                <input type="text" id="word_submit123" autocomplete="off">
                 <button id="up_button">Entrez</button>
             </form>
         </footer>
@@ -72,66 +88,99 @@
 
     <script>
 
-        var spans= document.getElementsByTagName('span')
-        var guessedWord =  [];
+
+        var spans = document.getElementsByTagName('span')
+        var guessWords = {};
+
         const contentArticle = (document.getElementById('content-article').textContent.toLowerCase()).normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        
+        const special_words = [
+        'la', 'le', 'La', 'Le', 'de', 'De', 'des', 'Des', 'un', 'Un', 'une', 'Une',
+        'mais','Mais', 'ou', 'Ou', 'et', 'Et', 'donc', 'Donc', 'or', 'Or', 'ni', 'Ni', 'car', 'Car',
+        'du', 'Du', 'en', 'En','à', "d'", "D'", "l'", "L'", "qu'", "Qu'", "s'", "S'", "m'", "M'","n'",
+        "N'", "c'", "C'", "jusqu'", "Jusqu'", 'est', 'était', 'Etait', 'comme', 'Comme', 'entre', 'Entre', 
+        'avec', 'Avec', 'sans', 'Sans', 'dans', 'Dans', 'pour', 'Pour', 'contre', 'Contre', 'par', 'Par',
+        'après', 'Après', 'avant', 'Avant','a', 'A', 'au', 'Au', 'tous', 'Tous', 'tout', 'Tout', 'toute',
+        'Toute', 'toutes,', 'Toutes', 
+        '*', ' ', '.', '(', ')', '/', ',', '"', "'", ':', '»', '«', '%', '-', '=', '==', '===', '====']
+
+
+
+
 
         function newWord() {
 
-            event.preventDefault()
-            var myinput = document.getElementById('word');
-            var word = myinput.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s/g, '');
+            event.preventDefault();
+            var input = document.getElementById('word_submit123');
+            var word = normalize(input.value);
+            let numberOccurence = 0;
+       
 
             if (word.length != 0){
-                if (guessedWord.includes(word)) {
 
-                    //do your code to hightlight already guessed Word in table
+                if (special_words.indexOf(word) == -1){
 
-                }
-                else {
-                    guessedWord.push(word)
-                }
-                        
-                for (var i = 0, len = spans.length; i < len; ++i) {
+                    for (var i = 0, len = spans.length; i < len; ++i) {
+    
+                        if (normalize(spans[i].innerHTML).length == word.length){
 
-                    if ((spans[i].innerHTML).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").length == word.length){
-                
-                        if((spans[i].innerHTML).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").indexOf(word) !== -1){
-                    
-                            spans[i].className = " noHighWord";
-                        }                    
+                            if(normalize(spans[i].innerHTML).indexOf(word) !== -1){
+                                numberOccurence += 1;
+                                spans[i].className = "noHighWord"+" guessWords_"+word;
+                            }    
+                        }     
                     }
-                }                
+                    if (guessWords[word]) {
+                        //do your code to hightlight already guessed Word in table
+                    }
+                    else {
+                        guessWords[word] = numberOccurence;
+                    }
+                }
             }
-            showGuessedList()   
-            myinput.value = ""            
+            console.log(guessWords)
+            showGuessList()  
+            input.value = ""
         }
 
+        function showGuessList() {
 
-
-        function countOccurences(article, word) {
-            return article.split(word).length - 1;
+            let html="";
+            let hits = 0;
+            for (let word in guessWords){
+                hits += 1;
+                classValue = "guessWords_"+word
+                lignehtml ="<tr id="+word+">"
+                lignehtml +="<td>"+hits+"</td>" 
+                lignehtml +="<td><a onclick='highlightOnClick("+classValue+")'>"+word+"</a></td>"
+                lignehtml +="<td>"+guessWords[word]+"</td>"
+                lignehtml +="</tr>"
+                html = lignehtml + html
+            } 
+            guess_table.innerHTML = html
+            
         }
 
-        
-        function showGuessedList() {
+        function highlightOnClick(elemClass){
 
-            let html=""
-            for (const [i, word] of guessedWord.entries()) {
-                var numHits = countOccurences(contentArticle, word);
-                lignehtml ="<tr>"
-                lignehtml +="<td>"+(i+1)+"</td>"
-                lignehtml +="<td>"+word+"</td>"
-                lignehtml +="<td>"+numHits+"</td>"
-                lignehtml +="</tr>" 
-                html = lignehtml + html 
+            console.log(elemClass)
+            
+            for (elem of document.getElementsByClassName(elemClass)){
+
+                if(elem.classList.contains("clicked")){
+
+                    elem.classList.remove("clicked");
+
+                }else {
+                    elem.className += " clicked";
+                }
             }
-            guess_table.innerHTML = html 
         }
 
-        function formatArticle(article){
-            article = article.replace(/\s*,\s*/g, ",");
-        }
+        function normalize(element){
+            return element.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s/g, '')
+        } 
+
 
     </script>
 </html>

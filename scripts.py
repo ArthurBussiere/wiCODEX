@@ -18,11 +18,11 @@ def get_article_from_wiki():
     special_words = [
         'la', 'le', 'La', 'Le', 'de', 'De', 'des', 'Des', 'un', 'Un', 'une', 'Une',
     'mais','Mais', 'ou', 'Ou', 'et', 'Et', 'donc', 'Donc', 'or', 'Or', 'ni', 'Ni', 'car', 'Car',
-    'du', 'Du', 'en', 'En','à', "d'", "D'", "l'", "L'", "qu'", "Qu'", "s'", "S'", 'est', 'était',
-    'Etait', 'comme', 'Comme', 'entre', 'Entre', 'avec', 'Avec', 'dans', 'Dans', 'pour', 'Pour', 
-    'contre', 'Contre', 'par', 'Par', 'après', 'Après', 'avant', 'Avant'
+    'du', 'Du', 'en', 'En','à', "d'", "D'", "l'", "L'", "qu'", "Qu'", "s'", "S'", "m'", "M'","n'",
+    "N'", "c'", "C'", "jusqu'", "Jusqu'", 'est', 'était', 'Etait', 'comme', 'Comme', 'entre', 'Entre', 'avec', 'Avec', 'sans', 'Sans', 'dans', 'Dans', 'pour', 'Pour', 
+    'contre', 'Contre', 'par', 'Par', 'après', 'Après', 'avant', 'Avant', 'a', 'A', 'au', 'Au' 'tous', 'Tous', 'tout', 'Tout', 'toute', 'Toute', 'toutes,', 'Toutes'
      ]
-    list_ponct = [' ', '.', '(', ')', '/', ',', '"', "'", ':', '»', '«', '%', '-']
+    list_ponct = ['*',' ', '.', '(', ')', '/', ',', '"', "'", ':', '»', '«', '%', '-', '=', '==', '===', '====']
 
     with open("Dicodex/static/title_list.txt", "r") as title_list:
         title = random.choice(title_list.read().splitlines())
@@ -32,24 +32,33 @@ def get_article_from_wiki():
         title_article  = title_article.split()
 
         content_article = json.loads(response.content)['query']['pages'][0]['extract']
-        list_words = content_article.split()
+        list_paragraphs = content_article.split("\n")
+        list_article = []
+        for paragraph in list_paragraphs:
+            if len(paragraph) == 0:
+                del paragraph
+            elif paragraph[0] == '':
+                del paragraph
+            else:
+                list_words = paragraph.split()
+                list_words = re.split(r"\0|(?<=')|(?=-)|(?=,)|(?=:)|(?=[%.])|(?=[%(])|(?=[%)])|(?=[%])|(?=[%[])", '\0'.join(list_words))
+                list_words = re.split(r"\0|(?<=-)|(?<=[%(])|(?<=[%)])", '\0'.join(list_words))
+                list_article.append(list_words)
     except KeyError:
         title_article = "Pas de contenu"
-        content_article = None
+        list_article = None
 
-    list_words = re.split(r"\0|(?<=')|(?=-)|(?=,)|(?=:)|(?=[%.])|(?=[%(])|(?=[%)])|(?=[%])|(?=[%[])", '\0'.join(list_words))
-    list_words = re.split(r"\0|(?<=-)|(?<=[%(])|(?<=[%)])", '\0'.join(list_words))
 
-    return title_article, list_words, special_words, list_ponct
+
+    return title_article, list_article, special_words, list_ponct
 
 
 
 #-----------DEBUG------------#
 
 # new_request = get_article_from_wiki()
-# print(new_request[1])
 
-# # print(list_words.sort())
+# print(new_request[1])
 
 
 

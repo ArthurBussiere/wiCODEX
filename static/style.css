@@ -81,7 +81,6 @@ footer{
 
 #guess_section thead{
 
-    margin-bottom: 10px;
 }
 
 table{
@@ -100,6 +99,16 @@ mark::selection{
     color: rgb(81, 81, 202);
 }
 
+.article_title2{
+    font-size:24px;
+    font-weight:bold;
+}
+
+.article_title3{
+    font-size:19px;
+    font-weight:bold;
+}
+
 .highWord {
     color: aliceblue;
     background-color: aliceblue;
@@ -113,4 +122,9 @@ mark::selection{
 
 .noHighWord {
     font-weight: bold;
+}
+
+.clicked {
+    color: black;
+    background-color: yellow;
 }

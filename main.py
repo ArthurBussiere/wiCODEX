@@ -15,6 +15,4 @@ def index():
     return render_template('index.html', new_article=new_article)
 
 
-
-
 app.run(debug=True)
