@@ -76,17 +76,17 @@ footer{
     margin-right:15px;
 }
 
-
-
-
-#guess_section thead{
-
-}
-
 table{
     text-align: center;
     width:100%;
 }
+
+/* table a {
+    cursor: default;
+    pointer-events: none;        
+    text-decoration: none;
+    color: aliceblue;
+} */
 
 mark{
     color: aliceblue;
@@ -126,5 +126,11 @@ mark::selection{
 
 .clicked {
     color: black;
-    background-color: yellow;
+    background-color: rgb(24, 136, 52);
 }
+
+.redclicked {
+    color: aliceblue;
+    background-color: rgb(133, 36, 41);
+}
+

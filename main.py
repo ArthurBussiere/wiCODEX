@@ -14,5 +14,4 @@ print(new_article[0], new_article[1])
 def index():
     return render_template('index.html', new_article=new_article)
 
-
 app.run(debug=True)
