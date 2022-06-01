@@ -79,9 +79,10 @@ footer{
 
 
 
-/* #guess_section thead{
-    position:fixed;
-} */
+#guess_section thead{
+
+    margin-bottom: 10px;
+}
 
 table{
     text-align: center;

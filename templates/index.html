@@ -61,9 +61,9 @@
         </main>
         <footer>
             
-            <form name="add_word" id="guess_form"  onsubmit="newWord(event, this);return false" autocomplete="off">
+            <form name="add_word" id="guess_form" onsubmit="newWord(event, this)">
                 <button id="up_button"><a href="#">Haut</a></button>
-                <input type="text" id="word">
+                <input type="text" id="word" autocomplete="off">
                 <button id="up_button">Entrez</button>
             </form>
         </footer>
@@ -78,10 +78,9 @@
 
         function newWord() {
 
-            var word = document.getElementById('word').value.toLowerCase()
-            word = word.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-            word = word.replace(/\s/g, '');
-
+            event.preventDefault()
+            var myinput = document.getElementById('word');
+            var word = myinput.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s/g, '');
 
             if (word.length != 0){
                 if (guessedWord.includes(word)) {
@@ -100,61 +99,39 @@
                         if((spans[i].innerHTML).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").indexOf(word) !== -1){
                     
                             spans[i].className = " noHighWord";
-                            var numHits = contentArticle.split(word).length - 1;
-                            console.log(numHits);
-                            showGuessedList(numHits);
-                        }
-                    
-                    }else {
-                        var numHits = 0;
-                        showGuessedList(numHits);
+                        }                    
                     }
-
                 }                
-            }      
-        }
-
-        function unHighWord(spans, word) {
-            for (var i = 0, len = spans.length; i < len; ++i) {
-
-                if ((spans[i].innerHTML).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").length == word.length){
-                    if((spans[i].innerHTML).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").indexOf(word) !== -1){
-                    
-                        spans[i].className = " noHighWord"
-                        
-                        
-                    }               
-                }
-            } 
+            }
+            showGuessedList()   
+            myinput.value = ""            
         }
 
 
-        // function countOccurences(article, word) {
-        //     console.log(article)
-        //     return article.split(word).length - 1;
-        // }
 
-        function showGuessedList(numHits) {
+        function countOccurences(article, word) {
+            return article.split(word).length - 1;
+        }
+
+        
+        function showGuessedList() {
+
             let html=""
             for (const [i, word] of guessedWord.entries()) {
-
-                console.log(numHits)
-                html +="<tr>"
-                html +="<td>"+(i+1)+"</td>"
-                html +="<td>"+word+"</td>"
-                html +="<td>"+numHits+"</td>"
-                html +="</tr>"
-                guess_table.innerHTML = html
+                var numHits = countOccurences(contentArticle, word);
+                lignehtml ="<tr>"
+                lignehtml +="<td>"+(i+1)+"</td>"
+                lignehtml +="<td>"+word+"</td>"
+                lignehtml +="<td>"+numHits+"</td>"
+                lignehtml +="</tr>" 
+                html = lignehtml + html 
             }
+            guess_table.innerHTML = html 
         }
 
         function formatArticle(article){
             article = article.replace(/\s*,\s*/g, ",");
         }
 
-        function unMarkWord(word) {
-
-        }
-        
     </script>
 </html>

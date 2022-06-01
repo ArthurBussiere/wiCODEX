@@ -20,7 +20,7 @@ def get_article_from_wiki():
     'mais','Mais', 'ou', 'Ou', 'et', 'Et', 'donc', 'Donc', 'or', 'Or', 'ni', 'Ni', 'car', 'Car',
     'du', 'Du', 'en', 'En','à', "d'", "D'", "l'", "L'", "qu'", "Qu'", "s'", "S'", 'est', 'était',
     'Etait', 'comme', 'Comme', 'entre', 'Entre', 'avec', 'Avec', 'dans', 'Dans', 'pour', 'Pour', 
-    'contre', 'Contre', 'par', 'Par'
+    'contre', 'Contre', 'par', 'Par', 'après', 'Après', 'avant', 'Avant'
      ]
     list_ponct = [' ', '.', '(', ')', '/', ',', '"', "'", ':', '»', '«', '%', '-']
 
@@ -39,14 +39,6 @@ def get_article_from_wiki():
 
     list_words = re.split(r"\0|(?<=')|(?=-)|(?=,)|(?=:)|(?=[%.])|(?=[%(])|(?=[%)])|(?=[%])|(?=[%[])", '\0'.join(list_words))
     list_words = re.split(r"\0|(?<=-)|(?<=[%(])|(?<=[%)])", '\0'.join(list_words))
-
-
-    # list_words = [s.replace('(', '') for s in list_words]
-    # list_words = [s.replace('[', '') for s in list_words]
-    # list_words = [s.replace(']', '') for s in list_words]
-    # list_words = [s.replace(')', '') for s in list_words]
-    # list_words = [s.replace('/', '') for s in list_words]
-
 
     return title_article, list_words, special_words, list_ponct
 
