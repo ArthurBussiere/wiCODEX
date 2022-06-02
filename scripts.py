@@ -6,7 +6,7 @@ import re
 
 
 url1 = "https://fr.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&titles="
-url2 = "&formatversion=2&explaintext=1&exsentences=10"
+url2 = "&formatversion=2&explaintext=1"
 
 #---- Add this KEY to URL to limit to 10 sentences : &exsentences=10
 

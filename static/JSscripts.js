@@ -3,6 +3,10 @@
     var spans = document.getElementsByTagName('span')
     var guessWords = {};
 
+    var slideshowIndex = 1;
+    var slideshowArray = [];
+    var slideshowWord = ""
+
     const contentArticle = (document.getElementById('content-article').textContent.toLowerCase()).normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
     const special_words = [
@@ -41,6 +45,7 @@
                         if(normalize(spans[i].innerHTML).indexOf(word) !== -1){
                             numberOccurence += 1;
                             spans[i].className = "noHighWord"+" guessWords_"+word;
+                            spans[i].id = "guessWords_"+word+numberOccurence;
                             spans[i].classList.toggle("clicked")
                         }    
                     }     
@@ -54,6 +59,8 @@
             }
         }
         //console.log(guessWords)
+
+        isWon()
         showGuessList()  
         input.value = ""
     }
@@ -67,7 +74,7 @@
             idValue = "a_gW_"+word
             lignehtml ="<tr id="+word+">"
             lignehtml +="<td>"+hits+"</td>" 
-            lignehtml +="<td id="+idValue+"><a onclick='HLOnClick("+idValue+")'>"+word+"</a></td>"
+            lignehtml +="<td id="+idValue+"><a href='#guessWords' onclick='HLOnClick("+idValue+")'>"+word+"</a></td>"
             lignehtml +="<td>"+guessWords[word]+"</td>"
             lignehtml +="</tr>"
             html = lignehtml + html
@@ -76,35 +83,55 @@
         
     }
 
+    function isWon(){
+        isWin =[]
+        for (span of document.getElementById("title_article").children){
+            isWin.push(span.classList.contains("noHighWord"))
+        }
+        if (isWin.every(Boolean)){
+            console.log("Gagné !!!")
+            alert("C'est gagné !!!")
+        }
+    }   
+
+
     function HLOnClick(idValue){
 
+        
+
         for (span of spans) {
-            span.classList.remove("clicked")
+            span.classList.remove("clicked");
         }
 
         for (elem of document.getElementsByTagName('td')){
-            elem.classList.remove("clicked")
-            elem.classList.remove("redclicked")
+            elem.classList.remove("clicked");
+            elem.classList.remove("redclicked");
         }
-
-        console.log(guessWords[idValue.textContent])
 
         if (guessWords[idValue.textContent] != 0) {
 
             //The word is in article (green HL)
 
-            idValue.classList.toggle("clicked")
+            idValue.classList.toggle("clicked");
+            classValue = "guessWords_"+idValue.textContent;    
 
-            classValue = "guessWords_"+idValue.textContent
-            
             for (elem of document.getElementsByClassName(classValue)){
                     elem.classList.toggle("clicked");
+                    //console.log(elem.id)
             }
 
-        }else {
+            if(slideshowWord != idValue.textContent) {slideshowIndex = 1;}
 
-            idValue.classList.toggle("redclicked")
-            
+            slideshowArray = document.getElementsByClassName(classValue);
+
+            if (slideshowIndex == slideshowArray.length+1) {slideshowIndex = 1;}
+
+            idValue.children[0].href ='#'+String(classValue)+String(slideshowIndex);
+            slideshowWord = idValue.textContent;
+            slideshowIndex ++;
+
+        }else {
+            idValue.classList.toggle("redclicked");            
         }
 
     }

@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
+    
     <head>
         <link href={{ url_for('static', filename='style.css') }} rel="stylesheet" type="text/css">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" >
     </head>
     <body>
         <header>
@@ -77,11 +79,13 @@
             </div>
         </main>
         <footer>
-            <form name="add_word" id="guess_form" onsubmit="newWord(event, this)">
-                <button id="up_button"><a href="#">Haut</a></button>
-                <input type="text" id="word_submit123" autocomplete="off">
-                <button id="up_button">Entrez</button>
-            </form>
+            <div id="form_div">
+                <form name="add_word" id="guess_form" onsubmit="newWord(event, this)">
+                    <button id="up_button"><a href="#">▲ Haut</a></button>
+                    <input type="text" id="word_submit123" placeholder=" mots" autocomplete="off">
+                    <button id="up_button">Check</button>
+                </form>
+            </div>
         </footer>
     </body>
 
