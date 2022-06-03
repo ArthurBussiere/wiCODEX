@@ -6,7 +6,7 @@ import random
 
 app = Flask(__name__)
 
-new_article=get_article_from_wiki()
+new_article = get_article_from_wiki()
 
 print(new_article[0], new_article[1])
 

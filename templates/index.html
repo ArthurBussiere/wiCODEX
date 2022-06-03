@@ -11,8 +11,8 @@
                 <ul>
                     <li class="title_header">DICODEX</li>
                     <li>Aide</li>
-                    <li>Statistiques</li>
-                    <li>Parametres</li>
+                    <li>Stats</li>
+                    <!-- <li>Parametres</li> -->
                 </ul>
             </nav>
         </header>
@@ -20,7 +20,13 @@
             <div id="article_section">
                 <h1 id="title_article">
                     {% for word in new_article[0] %}
-                    <span class="highWord">{{word}}</span>
+                        {% if word in new_article[2] %}
+                            <span>{{ word }}</span>
+                        {% elif word in new_article[3] %}
+                            <span>{{ word }}</span>
+                        {% else %}
+                            <span class="highWord">{{ word }}</a></span>
+                        {% endif %}
                     {% endfor %}
                 </h1>
                 <div id="content-article">
@@ -29,11 +35,11 @@
                             <p class="article_title2">
                                 {% for word in paragraph %}
                                     {% if word in new_article[2] %}
-                                        <span>{{ word }}</span>
+                                        <span>{{ word }}<a class="anchor_word"></a></span>
                                     {% elif word in new_article[3] %}
                                         <span>{{ word }}</span>
                                     {% else %}
-                                        <span class="highWord">{{ word }}</span>
+                                        <span class="highWord">{{ word }}<a class="anchor_word"></a></span>
                                     {% endif %}
                                 {% endfor %}
                             </p>  
@@ -45,7 +51,7 @@
                                     {% elif word in new_article[3] %}
                                         <span>{{ word }}</span>
                                     {% else %}
-                                        <span class="highWord">{{ word }}</span>
+                                        <span class="highWord">{{ word }}<a class="anchor_word"></a></span>
                                     {% endif %}
                                 {% endfor %}
                             </p>  
@@ -57,7 +63,7 @@
                                     {% elif word in new_article[3] %}
                                         <span>{{ word }}</span>
                                     {% else %}
-                                        <span class="highWord">{{ word }}</span>
+                                        <span class="highWord">{{ word }}<a class="anchor_word"></a></span>
                                     {% endif %}
                                 {% endfor %}
                             </p>
@@ -65,7 +71,7 @@
                     {% endfor %}
                 </div>
             </div>
-            <div id="guess_section">
+            <nav id="guess_section">
                 <table> 
                     <thead>
                         <tr>
@@ -76,8 +82,9 @@
                     </thead>
                     <tbody id="guess_table"></tbody>  
                 </table>
-            </div>
+            </nav>
         </main>
+
         <footer>
             <div id="form_div">
                 <form name="add_word" id="guess_form" onsubmit="newWord(event, this)">
@@ -88,6 +95,7 @@
             </div>
         </footer>
     </body>
+
 
     <script src={{ url_for('static', filename='JSscripts.js') }}></script>
 

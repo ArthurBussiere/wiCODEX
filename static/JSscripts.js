@@ -7,17 +7,19 @@
     var slideshowArray = [];
     var slideshowWord = ""
 
-    const contentArticle = (document.getElementById('content-article').textContent.toLowerCase()).normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    var isWin = document.getElementById("title_article").children
 
+    const contentArticle = (document.getElementById('content-article').textContent.toLowerCase()).normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     const special_words = [
-    'la', 'le', 'La', 'Le', 'de', 'De', 'des', 'Des', 'un', 'Un', 'une', 'Une',
+    'la', 'le', 'La', 'Le', 'de', 'De', 'des', 'Des', 'un', 'Un', 'une', 'Une',  
+    'y', 'Ce', 'ce', 'Ce', 'se', 'Se', 'Ceux', 'ceux', 'celle', 'Celle', 'celles', 'Celles',
     'mais','Mais', 'ou', 'Ou', 'et', 'Et', 'donc', 'Donc', 'or', 'Or', 'ni', 'Ni', 'car', 'Car',
     'du', 'Du', 'en', 'En','à', "d'", "D'", "l'", "L'", "qu'", "Qu'", "s'", "S'", "m'", "M'","n'",
     "N'", "c'", "C'", "jusqu'", "Jusqu'", 'est', 'était', 'Etait', 'comme', 'Comme', 'entre', 'Entre', 
     'avec', 'Avec', 'sans', 'Sans', 'dans', 'Dans', 'pour', 'Pour', 'contre', 'Contre', 'par', 'Par',
     'après', 'Après', 'avant', 'Avant','a', 'A', 'au', 'Au', 'tous', 'Tous', 'tout', 'Tout', 'toute',
     'Toute', 'toutes,', 'Toutes', 
-    '*', ' ', '.', '(', ')', '/', ',', '"', "'", ':', '»', '«', '%', '-', '=', '==', '===', '====']
+    '*', ' ', '.', '(', ')', '/', ',', '"', "'", ':',';', '»', '«', '%', '-', '=', '==', '===', '====']
 
 
     function newWord() {
@@ -40,15 +42,32 @@
 
                 for (var i = 0, len = spans.length; i < len; ++i) {
 
-                    if (normalize(spans[i].innerHTML).length == word.length){
 
-                        if(normalize(spans[i].innerHTML).indexOf(word) !== -1){
+                    if (normalize(spans[i].innerText).length == word.length){
+
+                        if(normalize(spans[i].innerText).indexOf(word) !== -1){
+                            console.log(spans[i])
+
                             numberOccurence += 1;
                             spans[i].className = "noHighWord"+" guessWords_"+word;
-                            spans[i].id = "guessWords_"+word+numberOccurence;
+                            spans[i].children[0].id = "guessWords_"+word+numberOccurence;
                             spans[i].classList.toggle("clicked")
                         }    
                     }     
+
+                    //try to pluralize :
+
+                    // console.log((spans[i].innerText+"s").length)
+                    // console.log((word+"s").length)
+                    // if (normalize(spans[i].innerText+"s").length == (word+"s").length){
+                    //     if(normalize(spans[i].innerText+"s").indexOf(word+"s") !== -1){
+                    //         console.log("pluriel-trouvé")
+                    //         numberOccurence += 1;
+                    //         spans[i].className = "noHighWord"+" guessWords_"+word;
+                    //         spans[i].children[0].id = "guessWords_"+word+numberOccurence;
+                    //         spans[i].classList.toggle("clicked")
+                    //     }  
+                    // }         
                 }
                 if (guessWords[word]) {
                     //do your code to hightlight already guessed Word in table
@@ -60,7 +79,6 @@
         }
         //console.log(guessWords)
 
-        isWon()
         showGuessList()  
         input.value = ""
     }
@@ -84,10 +102,6 @@
     }
 
     function isWon(){
-        isWin =[]
-        for (span of document.getElementById("title_article").children){
-            isWin.push(span.classList.contains("noHighWord"))
-        }
         if (isWin.every(Boolean)){
             console.log("Gagné !!!")
             alert("C'est gagné !!!")
@@ -117,7 +131,6 @@
 
             for (elem of document.getElementsByClassName(classValue)){
                     elem.classList.toggle("clicked");
-                    //console.log(elem.id)
             }
 
             if(slideshowWord != idValue.textContent) {slideshowIndex = 1;}
