@@ -4,12 +4,12 @@ body{
     background-color: rgb(27, 3, 47);
     color: aliceblue;
     font-family: 'Courier New', Courier, monospace;
-    font-size: calc(0.7vw + 7px);
+    font-size: calc(0.6vw + 8px);
     margin: auto;
     width:100%;
     display:flex;
     flex-direction: column;
-    /* max-width: 1200px; */
+    /* max-width: 1600px; */
 }
 
 header{
@@ -53,7 +53,7 @@ footer{
     overflow-y: auto;
     margin-left: 1%;
     text-align: center;
-    width: 31%;
+    width: 30vw;
     position: fixed;
     -ms-overflow-style: none;  /* Hide Scrollbar for IE and Edge */
     scrollbar-width: none;  /*Hide Scrollbar for  Firefox */
@@ -162,20 +162,23 @@ table a {
     text-decoration: none;}
 
 table th {
-    font-size: calc(0.8vw + 6px);
+    /* font-size: calc(0.8vw + 6px); */
     padding-bottom: 2%;
     border-bottom: 1px solid aliceblue;
+    width:100%;
 }
+
+table tr {width: 100%;}
 
 span{text-align: center;}
 
 .article_title2{
-    font-size:2.7vw;
+    font-size:calc(0.5vw + 13px);
     font-weight:bold;
 }
 
 .article_title3{
-    font-size:3vw;
+    font-size:calc(0.5vw + 10px);
     font-weight:bold;
 }
 

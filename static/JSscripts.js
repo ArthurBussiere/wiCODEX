@@ -1,4 +1,4 @@
-
+    
 
     var spans = document.getElementsByTagName('span')
     var guessWords = {};
@@ -7,10 +7,9 @@
     var slideshowArray = [];
     var slideshowWord = ""
 
-    var isWin = document.getElementById("title_article").children
 
     const contentArticle = (document.getElementById('content-article').textContent.toLowerCase()).normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-    const special_words = [
+    const special_words = [                             
     'la', 'le', 'La', 'Le', 'de', 'De', 'des', 'Des', 'un', 'Un', 'une', 'Une',  
     'y', 'Ce', 'ce', 'Ce', 'se', 'Se', 'Ceux', 'ceux', 'celle', 'Celle', 'celles', 'Celles',
     'mais','Mais', 'ou', 'Ou', 'et', 'Et', 'donc', 'Donc', 'or', 'Or', 'ni', 'Ni', 'car', 'Car',
@@ -22,6 +21,15 @@
     '*', ' ', '.', '(', ')', '/', ',', '"', "'", ':',';', '»', '«', '%', '-', '=', '==', '===', '====']
 
 
+
+
+    //Initialize :
+
+    loadProgress()
+    showGuessList()
+
+
+
     function newWord() {
 
         event.preventDefault();
@@ -31,7 +39,7 @@
         }
 
         var input = document.getElementById('word_submit123');
-        var word = normalize(input.value);
+        var word = formalize(input.value);
         let numberOccurence = 0;
         
 
@@ -42,10 +50,9 @@
 
                 for (var i = 0, len = spans.length; i < len; ++i) {
 
+                    if (formalize(spans[i].innerText).length == word.length){
 
-                    if (normalize(spans[i].innerText).length == word.length){
-
-                        if(normalize(spans[i].innerText).indexOf(word) !== -1){
+                        if(formalize(spans[i].innerText).indexOf(word) !== -1){
                             console.log(spans[i])
 
                             numberOccurence += 1;
@@ -54,13 +61,12 @@
                             spans[i].classList.toggle("clicked")
                         }    
                     }     
-
                     //try to pluralize :
 
                     // console.log((spans[i].innerText+"s").length)
                     // console.log((word+"s").length)
-                    // if (normalize(spans[i].innerText+"s").length == (word+"s").length){
-                    //     if(normalize(spans[i].innerText+"s").indexOf(word+"s") !== -1){
+                    // if (formalize(spans[i].innerText+"s").length == (word+"s").length){
+                    //     if(formalize(spans[i].innerText+"s").indexOf(word+"s") !== -1){
                     //         console.log("pluriel-trouvé")
                     //         numberOccurence += 1;
                     //         spans[i].className = "noHighWord"+" guessWords_"+word;
@@ -78,8 +84,10 @@
             }
         }
         //console.log(guessWords)
-
+        
+        saveProgress()
         showGuessList()  
+        checkIfWin()
         input.value = ""
     }
 
@@ -101,17 +109,22 @@
         
     }
 
-    function isWon(){
-        if (isWin.every(Boolean)){
-            console.log("Gagné !!!")
-            alert("C'est gagné !!!")
-        }
+    function checkIfWin(){ // <---- WORK IN PROGRESS NEEEED FIX !!!
+
+        // checkList = [document.getElementById('title_article').children]
+
+        // function checkClass(tag){
+        //     return tag.classList.contains("noHighWords")
+        // }
+
+        // if (checkList.every(checkClass)){
+        //     console.log("C'est Gagné")
+        //     alert('Gagné')
+        // }
+             
     }   
 
-
     function HLOnClick(idValue){
-
-        
 
         for (span of spans) {
             span.classList.remove("clicked");
@@ -149,7 +162,58 @@
 
     }
 
-    function normalize(element){ //remove accent & uppercase
+    function formalize(element){ //remove accent & uppercase
         return element.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s/g, '')
     } 
+
+    function saveProgress(){
+        let saveFile = JSON.stringify([document.getElementById("title_article").innerText, guessWords]);
+        localStorage.setItem('savefiles', saveFile);
+    }
+
+    function loadProgress(){
+        let loadFile = JSON.parse(localStorage.getItem("savefiles"))
+
+        if (loadFile[0] == document.getElementById("title_article").innerText) {
+            console.log("Sauvegarde trouvée")
+            guessWords = loadFile[1]
+
+        }else{ guessWords = {} }
+
+        for (word of Object.keys(guessWords)){
+
+            showWords(word)
+        }
+
+        checkIfWin()
+    }
+
+    function showWords(word){
+        let numberOccurence = 0;
+        if (word.length != 0){
+
+            if (special_words.indexOf(word) == -1){
+
+                for (var i = 0, len = spans.length; i < len; ++i) {
+
+                    if (formalize(spans[i].innerText).length == word.length){
+
+                        if(formalize(spans[i].innerText).indexOf(word) !== -1){
+
+                            numberOccurence += 1;
+                            spans[i].className = "noHighWord"+" guessWords_"+word;
+                            spans[i].children[0].id = "guessWords_"+word+numberOccurence;
+                            spans[i].classList.toggle("clicked")
+                        }    
+                    }            
+                }
+            }
+        }
+    }
+    
+    //Debug :
+    function clearLocal(){
+        localStorage.clear();
+    }
+
 

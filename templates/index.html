@@ -25,7 +25,7 @@
                         {% elif word in new_article[3] %}
                             <span>{{ word }}</span>
                         {% else %}
-                            <span class="highWord">{{ word }}</a></span>
+                            <span class="highWord">{{ word }}<a class="anchor_word"></a></span>
                         {% endif %}
                     {% endfor %}
                 </h1>
@@ -71,7 +71,7 @@
                     {% endfor %}
                 </div>
             </div>
-            <nav id="guess_section">
+            <div id="guess_section">
                 <table> 
                     <thead>
                         <tr>
@@ -82,7 +82,7 @@
                     </thead>
                     <tbody id="guess_table"></tbody>  
                 </table>
-            </nav>
+            </div>
         </main>
 
         <footer>
