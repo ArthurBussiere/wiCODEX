@@ -3,7 +3,6 @@ Diego_Vélasquez
 Le_Greco
 Hokusai
 Léonard_de_Vinci
-Michel-Ange
 Pablo_Picasso
 Rembrandt
 Salvador_Dalí
@@ -12,7 +11,6 @@ Homère
 Sophocle
 Virgile
 Li_Bai
-Djalâl_ad-Dîn_Rûmî
 Dante_Alighieri
 William_Shakespeare
 Miguel_de_Cervantes
@@ -23,7 +21,6 @@ Fiodor_Dostoïevski
 Léon_Tolstoï
 James_Joyce
 Franz_Kafka
-Jean-Sébastien_Bach
 Wolfgang_Amadeus_Mozart
 Ludwig_van_Beethoven
 Frédéric_Chopin
@@ -76,12 +73,10 @@ Leonhard_Euler
 Joseph_Fourier
 Carl_Friedrich_Gauss
 David_Hilbert
-Pierre-Simon_de_Laplace
 Gottfried_Wilhelm_Leibniz
 John_von_Neumann
 Pythagore
 Alan_Turing
-Al-Khwârizmî
 Confucius
 Socrate
 Platon
@@ -139,8 +134,6 @@ Histoire_de_la_Chine
 Histoire_de_l'Europe
 Histoire_de_l'Inde
 Histoire_du_Japon
-Histoire_du_Moyen-Orient
-Histoire_des_États-Unis
 Préhistoire
 Antiquité
 Âge_de_la_pierre
@@ -160,7 +153,6 @@ Peste_noire
 Empire_byzantin
 Croisade
 Séparation_des_Églises_d'Orient_et_d'Occident
-Saint-Empire_romain_germanique
 Âge_d'or_de_l'islam
 Empire_mongol
 Empire_ottoman
@@ -185,7 +177,6 @@ Grande_Dépression
 Seconde_Guerre_mondiale
 Shoah
 Guerre_froide
-Conflit_israélo-arabe
 Islamisme
 Guerre_de_Corée
 Mouvement_américain_des_droits_civiques
@@ -240,7 +231,6 @@ Amérique_du_Nord
 Amérique_du_Sud
 Amérique_latine
 Océanie
-Moyen-Orient
 Arctique
 Pays
 Australie
@@ -264,8 +254,6 @@ Russie
 Afrique_du_Sud
 Espagne
 Turquie
-Royaume-Uni
-États-Unis
 Désert
 Sahara
 Forêt
@@ -310,7 +298,6 @@ Chant
 Genre_musical
 Musique_classique
 Musique_folk
-Hip-hop
 Jazz
 Musique_pop
 Rock
@@ -340,7 +327,6 @@ Dessin
 Peinture
 Histoire_de_la_peinture
 La_Joconde
-Beaux-arts_(disciplines)
 Photographie
 Poterie
 Sculpture
@@ -408,8 +394,6 @@ Protestantisme
 Hindouisme
 Veda
 Upanishad
-Bhagavad-Gita
-Shakti_(hindouisme)
 Krishna
 Kali
 Islam
@@ -497,7 +481,6 @@ Portugais
 Russe
 Espagnol
 Tamoul
-Langues_indo-européennes
 Loisir
 Jeu
 Jeu_de_société
@@ -598,7 +581,6 @@ Armée
 Organisations_politiques_et_gouvernementales_spécifiques
 Union_européenne
 Fonds_monétaire_international
-Mouvement_international_de_la_Croix-Rouge_et_du_Croissant-Rouge
 Organisation_du_traité_de_l'Atlantique_nord
 Prix_Nobel
 Organisation_des_Nations_unies
@@ -621,7 +603,6 @@ Dengue
 Carie_dentaire
 Diabète
 Maladie
-Gastro-entérite
 Grippe
 Hypertension_artérielle
 Lombalgie
@@ -836,7 +817,6 @@ Masse
 Matière
 État_de_la_matière
 Mesure_physique
-Unités_de_mesure_anglo-saxonnes
 Système_international_d'unités
 Mouvement
 Mécanique_quantique
@@ -867,7 +847,6 @@ Combustible_fossile
 Pile_électrique
 Lampe_à_incandescence_classique
 Circuit_intégré
-semi-conducteur
 Transistor
 Génie_mécanique
 Moteur
@@ -929,7 +908,6 @@ Arme_à_feu
 Couteau
 Arme_nucléaire
 Épée
-Sous-marin
 Char_d'assaut
 Bougie
 Feu

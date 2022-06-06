@@ -1,15 +1,21 @@
-    
-
-    var spans = document.getElementsByTagName('span')
-    var guessWords = {};
-
-    var slideshowIndex = 1;
-    var slideshowArray = [];
-    var slideshowWord = ""
 
 
+
+    var spans = document.getElementsByTagName('span')           //<---- all word in article are wrapped in span
+    var guessWords = {};                                        //<---- the dico of all words tested by users (saved)
+
+    var slideshowIndex = 1;                                     //<----
+    var slideshowArray = [];                                    //<---- Used to swap between Highlighted words in article
+    var slideshowWord = ""                                      //<----
+
+    var checkWin = [];                                          //<---- Test if all title word have been found
+    var stats = {};                                             //<---- stats of previous word found by user (saved)
+
+    const titleWords = document.getElementsByClassName('titleword');
     const contentArticle = (document.getElementById('content-article').textContent.toLowerCase()).normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-    const special_words = [                             
+    const signs = document.getElementsByClassName("sign")
+    const special_words = [     
+
     'la', 'le', 'La', 'Le', 'de', 'De', 'des', 'Des', 'un', 'Un', 'une', 'Une',  
     'y', 'Ce', 'ce', 'Ce', 'se', 'Se', 'Ceux', 'ceux', 'celle', 'Celle', 'celles', 'Celles',
     'mais','Mais', 'ou', 'Ou', 'et', 'Et', 'donc', 'Donc', 'or', 'Or', 'ni', 'Ni', 'car', 'Car',
@@ -17,7 +23,8 @@
     "N'", "c'", "C'", "jusqu'", "Jusqu'", 'est', 'était', 'Etait', 'comme', 'Comme', 'entre', 'Entre', 
     'avec', 'Avec', 'sans', 'Sans', 'dans', 'Dans', 'pour', 'Pour', 'contre', 'Contre', 'par', 'Par',
     'après', 'Après', 'avant', 'Avant','a', 'A', 'au', 'Au', 'tous', 'Tous', 'tout', 'Tout', 'toute',
-    'Toute', 'toutes,', 'Toutes', 
+    'Toute', 'toutes,', 'Toutes', 'qui', 'Qui', 'que', 'Que','quoi', 'Quoi','quand', 'Quand', 'dont', 'Dont',
+     'où', 'Où', 'il', 'Il', 'Elle', 'elle', 'ils', 'Ils', 'elles', 'Elles',
     '*', ' ', '.', '(', ')', '/', ',', '"', "'", ':',';', '»', '«', '%', '-', '=', '==', '===', '====']
 
 
@@ -25,10 +32,21 @@
 
     //Initialize :
 
+    for (elem of signs){
+        if (elem.innerHTML == ("-")){elem.classList.add('doubleMargin')}
+        if (elem.innerHTML == (".")){elem.classList.add('leftMargin')}
+        if (elem.innerHTML == (",")){elem.classList.add('leftMargin')}
+        if (elem.innerHTML == (":")){elem.classList.add('leftMargin')}
+        if (elem.innerHTML == ("(")){elem.classList.add('rightMargin')}
+        if (elem.innerHTML == (")")){elem.classList.add('leftMargin')}
+        if (elem.innerHTML == ("«")){elem.classList.add('rightMargin')}
+        if (elem.innerHTML == ("»")){elem.classList.add('leftMargin')}
+        
+    }
+
+
     loadProgress()
     showGuessList()
-
-
 
     function newWord() {
 
@@ -53,27 +71,19 @@
                     if (formalize(spans[i].innerText).length == word.length){
 
                         if(formalize(spans[i].innerText).indexOf(word) !== -1){
-                            console.log(spans[i])
 
                             numberOccurence += 1;
-                            spans[i].className = "noHighWord"+" guessWords_"+word;
-                            spans[i].children[0].id = "guessWords_"+word+numberOccurence;
-                            spans[i].classList.toggle("clicked")
+                            if (spans[i].classList.contains("titleword")){
+                                checkWin.push(spans[i].innerText)
+                                spans[i].className = ("noHighWord titleword"+" guessWords_"+word);
+                                spans[i].children[0].id = "guessWords_"+word+numberOccurence;
+                                spans[i].classList.toggle("clicked")
+                            }else {                            
+                                spans[i].className = ("noHighWord"+" guessWords_"+word);
+                                spans[i].children[0].id = "guessWords_"+word+numberOccurence;
+                                spans[i].classList.toggle("clicked")}
                         }    
                     }     
-                    //try to pluralize :
-
-                    // console.log((spans[i].innerText+"s").length)
-                    // console.log((word+"s").length)
-                    // if (formalize(spans[i].innerText+"s").length == (word+"s").length){
-                    //     if(formalize(spans[i].innerText+"s").indexOf(word+"s") !== -1){
-                    //         console.log("pluriel-trouvé")
-                    //         numberOccurence += 1;
-                    //         spans[i].className = "noHighWord"+" guessWords_"+word;
-                    //         spans[i].children[0].id = "guessWords_"+word+numberOccurence;
-                    //         spans[i].classList.toggle("clicked")
-                    //     }  
-                    // }         
                 }
                 if (guessWords[word]) {
                     //do your code to hightlight already guessed Word in table
@@ -91,6 +101,7 @@
         input.value = ""
     }
 
+
     function showGuessList() {
 
         let html="";
@@ -98,7 +109,7 @@
         for (let word in guessWords){
             hits += 1;
             idValue = "a_gW_"+word
-            lignehtml ="<tr id="+word+">"
+            lignehtml = "<tr id="+word+">"
             lignehtml +="<td>"+hits+"</td>" 
             lignehtml +="<td id="+idValue+"><a href='#guessWords' onclick='HLOnClick("+idValue+")'>"+word+"</a></td>"
             lignehtml +="<td>"+guessWords[word]+"</td>"
@@ -109,20 +120,33 @@
         
     }
 
+
     function checkIfWin(){ // <---- WORK IN PROGRESS NEEEED FIX !!!
 
-        // checkList = [document.getElementById('title_article').children]
+        checklist = []
 
-        // function checkClass(tag){
-        //     return tag.classList.contains("noHighWords")
-        // }
+        for (elem of titleWords){
+            checklist.push(elem.innerText)
+        }
 
-        // if (checkList.every(checkClass)){
-        //     console.log("C'est Gagné")
-        //     alert('Gagné')
-        // }
-             
+        if (checkWin.length === checklist.length){
+            if (checkWin.sort().join(',') === checklist.sort().join(',')){
+
+                saveProgress()
+
+                win_result_word.innerHTML = document.getElementById("title_article").innerText;
+                win_result_hits.innerHTML = "en :"+stats[document.getElementById("title_article").innerText]+" coups.";
+
+                document.getElementById("mask").style.display="block";
+                document.getElementById("win_modal").style.display="flex";
+
+                stats[document.getElementById("title_article").innerText] = Object.keys(guessWords).length; 
+            }
+        } 
+        saveProgress()
+
     }   
+
 
     function HLOnClick(idValue){
 
@@ -162,31 +186,41 @@
 
     }
 
+
     function formalize(element){ //remove accent & uppercase
         return element.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s/g, '')
     } 
 
+
     function saveProgress(){
-        let saveFile = JSON.stringify([document.getElementById("title_article").innerText, guessWords]);
+        let saveFile = JSON.stringify([document.getElementById("title_article").innerText, guessWords, stats]);
         localStorage.setItem('savefiles', saveFile);
     }
+
 
     function loadProgress(){
         let loadFile = JSON.parse(localStorage.getItem("savefiles"))
 
-        if (loadFile[0] == document.getElementById("title_article").innerText) {
-            console.log("Sauvegarde trouvée")
-            guessWords = loadFile[1]
+        if (loadFile != null) {
+            if (loadFile[0] == document.getElementById("title_article").innerText) {
+                console.log("Sauvegarde trouvée")
+                guessWords = loadFile[1]
 
-        }else{ guessWords = {} }
+            }else{ guessWords = {} }
 
-        for (word of Object.keys(guessWords)){
+            for (word of Object.keys(guessWords)){
 
-            showWords(word)
+                showWords(word)
+            }
+            console.log("Stats : ", loadFile[2])
+            stats = loadFile[2]
         }
+
+
 
         checkIfWin()
     }
+
 
     function showWords(word){
         let numberOccurence = 0;
@@ -201,15 +235,55 @@
                         if(formalize(spans[i].innerText).indexOf(word) !== -1){
 
                             numberOccurence += 1;
-                            spans[i].className = "noHighWord"+" guessWords_"+word;
-                            spans[i].children[0].id = "guessWords_"+word+numberOccurence;
-                            spans[i].classList.toggle("clicked")
+                            if (spans[i].classList.contains("titleword")){
+                                checkWin.push(spans[i].innerText)
+                                spans[i].className = ("noHighWord titleword"+" guessWords_"+word);
+                                spans[i].children[0].id = "guessWords_"+word+numberOccurence;
+                                spans[i].classList.toggle("clicked")
+                            }else {                            
+                                spans[i].className = ("noHighWord"+" guessWords_"+word);
+                                spans[i].children[0].id = "guessWords_"+word+numberOccurence;
+                                spans[i].classList.toggle("clicked")}
+
                         }    
                     }            
                 }
             }
         }
     }
+
+
+    function showHelp(){
+        document.getElementById("mask").style.display="block"
+        document.getElementById("help_modal").style.display="flex"
+    }
+
+
+    function showStats(){
+        document.getElementById("mask").style.display="block"
+        document.getElementById("stats_modal").style.display="flex"
+        let html=""
+        for (let word in stats){
+            lignehtml = "<tr>"
+            lignehtml +="<td>"+stats[word]+"</td>"
+            lignehtml +="<td>"+word+"</td>"
+            lignehtml +="<td></td>"
+            lignehtml +="</tr>"
+            html = lignehtml + html
+        }
+        stats_table.innerHTML = html
+
+    }
+
+
+    function hideMask(){
+        document.getElementById("mask").style.display="none"
+        document.getElementById("stats_modal").style.display="none"
+        document.getElementById("help_modal").style.display="none"
+        document.getElementById("win_modal").style.display="none"
+    }
+
+
     
     //Debug :
     function clearLocal(){

@@ -44,7 +44,15 @@ footer{
     padding: calc(1vw + 1%);
     line-height: 1.6;
     box-sizing: border-box;
+
 }
+
+/* #content-article p {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 12px;
+} */
+
 
 
 #guess_section {
@@ -96,7 +104,6 @@ footer{
     width: 20%;
     background-color: rgb(27, 3, 47);
     color: aliceblue;
-    font-family: 'Courier New', Courier, monospace;
     border: none;
     font-size: calc(1.2vw + 7px);
     padding:1%;
@@ -137,16 +144,18 @@ footer{
 
 #navbar li:hover {color: aliceblue;}
 
+/* #guess_table{
+    display: inline-block;
+    width:10vw;
+} */
 
 
-table:hover{
+#guess_section table:hover{
     overflow-y: scroll;
 } 
 
-table{
-    display: block;
+#guess_section table{
     width: 100%;
-    cursor: pointer;
     color: white;
     text-decoration: none;
     font-size: calc(0.7vw + 6px);
@@ -154,7 +163,7 @@ table{
     text-align: center;
 }
 
-table a {
+#guess_section table a {
     display: block;
     width: 100%; 
     cursor: pointer;
@@ -162,15 +171,15 @@ table a {
     text-decoration: none;}
 
 table th {
-    /* font-size: calc(0.8vw + 6px); */
     padding-bottom: 2%;
     border-bottom: 1px solid aliceblue;
-    width:100%;
 }
 
-table tr {width: 100%;}
-
 span{text-align: center;}
+
+.leftMargin{margin-left: calc(-5px - 0.3vw);}
+.rightMargin{margin-right: calc(-5px - 0.3vw);}
+.doubleMargin{margin : 0 calc(-5px - 0.3vw);}
 
 .article_title2{
     font-size:calc(0.5vw + 13px);
@@ -213,4 +222,55 @@ span{text-align: center;}
     position: relative;
     top: -250px;
     visibility: hidden;
+}
+
+
+
+#mask {
+    background-color: rgba(0,0,0 ,0.7);
+    width:100%;
+    height:100%;
+    position:fixed;
+    top:0;
+    right:0;
+    display:none;
+    z-index: 5000;
+    font-weight: bold;
+}
+
+#help_modal, #stats_modal, #win_modal {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    width : calc(200px + 20vw);
+    margin:5vw auto;
+}
+
+#win_modal{font-size: x-large;}
+
+#help_modal button, #stats_modal button, #win_modal button{
+    width:calc(20% + 5vw);
+    margin: 2vw auto;
+}
+
+
+#chargement {
+    border: 12px solid #000;
+    border-radius: 50%;
+    border-top: 12px solid #DDD;
+    width: 80px;
+    height: 80px;
+    animation: spin 2s linear infinite;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+
+@keyframes spin {
+100% {
+    transform: rotate(360deg);
+}
 }

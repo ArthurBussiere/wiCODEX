@@ -5,13 +5,17 @@
         <link href={{ url_for('static', filename='style.css') }} rel="stylesheet" type="text/css">
         <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" >
     </head>
+
+    <script src={{ url_for('static', filename='loadscript.js') }}></script>
+
     <body>
+        <div id="chargement"></div>
         <header>
             <nav id="navbar">
                 <ul>
-                    <li class="title_header">DICODEX</li>
-                    <li>Aide</li>
-                    <li>Stats</li>
+                    <li class="title_header"><a>wiCODEX ᴮᴱᵀᴬ</a></li>
+                    <li><a id="helpButton" onclick="showHelp()">Aide</a></li>
+                    <li><a id="statsButton" onclick="showStats()">Stats</a></li>
                     <!-- <li>Parametres</li> -->
                 </ul>
             </nav>
@@ -23,9 +27,9 @@
                         {% if word in new_article[2] %}
                             <span>{{ word }}</span>
                         {% elif word in new_article[3] %}
-                            <span>{{ word }}</span>
+                            <span class="sign">{{ word }}</span>
                         {% else %}
-                            <span class="highWord">{{ word }}<a class="anchor_word"></a></span>
+                            <span class="highWord titleword">{{ word }}<a class="anchor_word"></a></span>
                         {% endif %}
                     {% endfor %}
                 </h1>
@@ -37,7 +41,7 @@
                                     {% if word in new_article[2] %}
                                         <span>{{ word }}<a class="anchor_word"></a></span>
                                     {% elif word in new_article[3] %}
-                                        <span>{{ word }}</span>
+                                        <span class="sign">{{ word }}</span>
                                     {% else %}
                                         <span class="highWord">{{ word }}<a class="anchor_word"></a></span>
                                     {% endif %}
@@ -49,7 +53,7 @@
                                     {% if word in new_article[2] %}
                                         <span>{{ word }}</span>
                                     {% elif word in new_article[3] %}
-                                        <span>{{ word }}</span>
+                                        <span class="sign">{{ word }}</span>
                                     {% else %}
                                         <span class="highWord">{{ word }}<a class="anchor_word"></a></span>
                                     {% endif %}
@@ -61,7 +65,7 @@
                                     {% if word in new_article[2] %}
                                         <span>{{ word }}</span>
                                     {% elif word in new_article[3] %}
-                                        <span>{{ word }}</span>
+                                        <span class="sign">{{ word }}</span>
                                     {% else %}
                                         <span class="highWord">{{ word }}<a class="anchor_word"></a></span>
                                     {% endif %}
@@ -82,7 +86,6 @@
                     </thead>
                     <tbody id="guess_table"></tbody>  
                 </table>
-            </div>
         </main>
 
         <footer>
@@ -96,6 +99,60 @@
         </footer>
     </body>
 
+    <div id="mask" onclick="hideMask()">
+
+        <div id="help_modal">
+            <h2>Instructions</h2>
+            <p>wiCODEX est un puzzle-game, chaque jour un nouvel article issu de Wikipédia vous est proposé.
+                Votre but est de trouver le titre de l'article en devinant les mots qui le composent. <br><br>
+
+                Chaque fois que vous découvrirez un mot, celui ci se relevera dans la <bold>colonne de droite</bold>
+                et vous pourrez cliquez dessus pour faire defiler ses occurences dans l'article. <br><br>
+
+                Les accents et les majuscules ne sont pas comptabilisés mais attention,  les mots peuvent etre au pluriel! <br><br>
+
+                Pour vous aider, voici quelques exemples de mots susceptibles d'apparaitre :<br>
+                histoire, pays, temps, concept, siecle....<br><br>
+
+                Have Fun ! <br><br>
+
+                wiCODEX est encore en phase de développement, l'extraction des articles de la base de données Wikipédia 
+                peut poser des problèmes de compatibilités, notamment les caractères spéciaux qui peuvent s'afficher au mauvais format, <br>
+                Merci pour votre compréhension !
+                <br>
+            </p>
+            <button id="hideHelp" onclick="hideMask()">Close</button>
+        </div>
+
+        <div id="stats_modal">
+            <h2>Statistiques :</h2>
+            <p></p>
+            <table>
+                <thead>
+                    <tr>
+                         <th style="width: 15%;"> Hits </th>
+                         <th style="width: 85%;"> Mots </th>
+                         <!-- <th style="width: 15%;"> Date </th>   -->
+                    </tr>                        
+                </thead>
+                <tbody id = "stats_table"></tbody>
+            </table>
+            <button id="hideStats" onclick="hideMask()">Close</button>
+            <br><br>
+        </div>
+
+        <div id="win_modal">
+            <h2>Félicitations!</h2>
+            <p>Vous avez trouvé l'article du jour :
+                <h3 id="win_result_word"></h3>
+                <div id="win_result_hits"></div>
+                <br>
+                Revenez demain pour un nouvel article !
+            </p>
+            <br>
+            <button id="hideWin" onclick="hideMask()">Close</button>
+        </div>
+    </div>
 
     <script src={{ url_for('static', filename='JSscripts.js') }}></script>
 

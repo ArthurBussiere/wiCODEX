@@ -16,15 +16,17 @@ url2 = "&formatversion=2&explaintext=1"
 def get_article_from_wiki():
 
     special_words = [
-        'la', 'le', 'La', 'Le', 'y', 'Ce', 'ce', 'Ce', 'se', 'Se', 'Ceux', 'ceux', 'celle', 'Celle', 'celles', 'Celles', 'de', 'De', 'des', 'Des', 'un', 'Un', 'une', 'Une',
+        'la', 'le', 'La', 'Le', 'y', 'Ce', 'ce', 'Ce', 'se', 'Se', 'Ceux', 'ceux', 'celle', 'Celle', 
+    'celles', 'Celles', 'de', 'De', 'des', 'Des', 'un', 'Un', 'une', 'Une',
     'mais','Mais', 'ou', 'Ou', 'et', 'Et', 'donc', 'Donc', 'or', 'Or', 'ni', 'Ni', 'car', 'Car', 'y',
     'du', 'Du', 'en', 'En','à', "d'", "D'", "l'", "L'", "qu'", "Qu'", "s'", "S'", "m'", "M'","n'",
     "N'", "c'", "C'", "jusqu'", "Jusqu'", 'est', 'était', 'Etait', 'comme', 'Comme', 'entre', 'Entre', 'avec', 'Avec', 'sans', 'Sans', 'dans', 'Dans', 'pour', 'Pour', 
-    'contre', 'Contre', 'par', 'Par', 'après', 'Après', 'avant', 'Avant', 'a', 'A', 'au', 'Au' 'tous', 'Tous', 'tout', 'Tout', 'toute', 'Toute', 'toutes,', 'Toutes'
+    'contre', 'Contre', 'par', 'Par', 'après', 'Après', 'avant', 'Avant', 'a', 'A', 'au', 'Au', 'il', 'Il', 'Elle', 'elle', 'ils', 'Ils', 'elles', 'Elles',
+     'tous', 'Tous', 'tout', 'Tout', 'toute', 'Toute', 'toutes,', 'Toutes', 'qui', 'Qui', 'que', 'Que','quoi', 'Quoi','quand', 'Quand', 'dont', 'Dont', 'où', 'Où',
      ]
     list_ponct = ['*',' ', '.', '(', ')', '/', ',', '"', "'", ':', ';', '»', '«', '%', '-', '=', '==', '===', '====']
 
-    with open("Dicodex/static/title_list.txt", "r") as title_list:
+    with open("wiCODEX/static/title_list.txt", "r") as title_list:
         title = random.choice(title_list.read().splitlines())
         response = requests.get(url1+str(title)+url2)
     try:
