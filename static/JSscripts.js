@@ -140,6 +140,10 @@
                 document.getElementById("mask").style.display="block";
                 document.getElementById("win_modal").style.display="flex";
 
+                for (span of spans){
+                    span.classList.remove("highWord")
+                }
+
                 stats[document.getElementById("title_article").innerText] = Object.keys(guessWords).length; 
             }
         } 

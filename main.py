@@ -1,22 +1,15 @@
 from scripts import get_article_from_wiki
 from flask import Flask, render_template, url_for
-import time
-import schedule
+import os
 
 
 app = Flask(__name__)
 
-def new_article():
-    new_article = get_article_from_wiki()
-    print(new_article[0], new_article[1])
-    return new_article
+
+new_article = get_article_from_wiki()
+print(new_article[0], new_article[1])
 
 
-schedule.every(1).minutes.do(new_article)
-
-while True:
-    schedule.run_pending()
-    time.sleep(1)
 
 @app.route('/', methods=['GET'])
 def index():
@@ -24,4 +17,5 @@ def index():
 
 
 
-app.run(debug=True)
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=2662, debug=os.environ.get('DEBUG') == '1')

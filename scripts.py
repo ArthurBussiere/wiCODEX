@@ -26,7 +26,7 @@ def get_article_from_wiki():
      ]
     list_ponct = ['*',' ', '.', '(', ')', '/', ',', '"', "'", ':', ';', '»', '«', '%', '-', '=', '==', '===', '====']
 
-    with open("wiCODEX/static/title_list.txt", "r") as title_list:
+    with open("static/title_list.txt", "r") as title_list:
         title = random.choice(title_list.read().splitlines())
         response = requests.get(url1+str(title)+url2)
     try:
