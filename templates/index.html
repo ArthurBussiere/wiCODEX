@@ -3,7 +3,15 @@
     
     <head>
         <link href={{ url_for('static', filename='style.css') }} rel="stylesheet" type="text/css">
-        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" >
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+            <script async src="https://www.googletagmanager.com/gtag/js?id=G-8NTWRJ1W8P"></script>
+            <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-8NTWRJ1W8P');
+            </script>
     </head>
 
     <script src={{ url_for('static', filename='loadscript.js') }}></script>
@@ -103,23 +111,27 @@
 
         <div id="help_modal">
             <h2>Instructions</h2>
-            <p>wiCODEX est un puzzle-game, chaque jour un nouvel article issu de Wikipédia vous est proposé.
-                Votre but est de trouver le titre de l'article en devinant les mots qui le composent. <br><br>
+            <p>
+                wiCODEX est un puzzle-game, inspiré du jeu <a href="https://www.redactle.com/">Redactle.</a>
+            </p>
 
+            <p>Chaque jour un nouvel article issu de Wikipédia vous est proposé.
+                Votre but est de trouver le titre de l'article en devinant les mots qui le composent.
+            </p>    
+            <p>
                 Chaque fois que vous découvrirez un mot, celui ci se relevera dans la <bold>colonne de droite</bold>
-                et vous pourrez cliquez dessus pour faire defiler ses occurences dans l'article. <br><br>
-
+                et vous pourrez cliquez dessus pour faire defiler ses occurences dans l'article.
+            </p>
+            <p>
                 Les accents et les majuscules ne sont pas comptabilisés mais attention,  les mots peuvent etre au pluriel! <br><br>
-
-                Pour vous aider, voici quelques exemples de mots susceptibles d'apparaitre :<br>
-                histoire, pays, temps, concept, siecle....<br><br>
-
-                Have Fun ! <br><br>
-
+            </p>
+            <p>
+                Have Fun !
+            </p>
+            <p>
                 wiCODEX est encore en phase de développement, l'extraction des articles de la base de données Wikipédia 
-                peut poser des problèmes de compatibilités, notamment les caractères spéciaux qui peuvent s'afficher au mauvais format, <br>
-                Merci pour votre compréhension !
-                <br>
+                peut poser des problèmes de compatibilités, notamment les caractères spéciaux qui peuvent s'afficher au mauvais format.
+                <br><br>Vous pouvez signalez des bugs ou des suggestions d'améliorations via ce <a href="https://github.com/ArthurBussiere/wiCODEX/issues">lien.</a>
             </p>
             <button id="hideHelp" onclick="hideMask()">Close</button>
         </div>

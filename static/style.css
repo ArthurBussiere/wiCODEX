@@ -246,6 +246,10 @@ span{text-align: center;}
     justify-content: center;
     width : calc(200px + 20vw);
     margin:5vw auto;
+    background-color: aliceblue;
+    padding: 20px;
+    color:rgb(8, 1, 14);
+    border-radius: 2%;
 }
 
 #win_modal{font-size: x-large;}
