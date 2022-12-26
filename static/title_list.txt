@@ -84,7 +84,6 @@ Aristote
 Adi_Shankara
 Nāgārjuna
 Avicenne
-Thomas_d'Aquin
 Ibn_Khaldoun
 René_Descartes
 John_Locke
@@ -117,9 +116,7 @@ Constantin_le_Grand
 Attila
 Charlemagne
 Gengis_Khan
-Jeanne_d'Arc
 Soliman_le_Magnifique
-Élisabeth_Ire_(reine_d'Angleterre)
 Napoléon_Ier
 Abraham_Lincoln
 Gandhi
@@ -128,11 +125,6 @@ Adolf_Hitler
 Mao_Zedong
 Nelson_Mandela
 Histoire_du_monde
-Histoire_de_l'Afrique
-Histoire_de_l'Amérique
-Histoire_de_la_Chine
-Histoire_de_l'Europe
-Histoire_de_l'Inde
 Histoire_du_Japon
 Préhistoire
 Antiquité
@@ -143,7 +135,6 @@ Sumer
 Âge_du_bronze
 Égypte_antique
 Assyrie
-Civilisation_de_la_vallée_de_l'Indus
 Âge_du_fer
 Grèce_antique
 Rome_antique
@@ -152,8 +143,6 @@ Moyen_Âge
 Peste_noire
 Empire_byzantin
 Croisade
-Séparation_des_Églises_d'Orient_et_d'Occident
-Âge_d'or_de_l'islam
 Empire_mongol
 Empire_ottoman
 Âge_des_Vikings
@@ -166,8 +155,6 @@ Siècle_des_Lumières
 Révolution_industrielle
 Révolution_française
 Guerres_napoléoniennes
-Abolition_de_l'esclavage
-Partage_de_l'Afrique
 Empire_britannique
 Empire_russe
 Union_des_républiques_socialistes_soviétiques
@@ -267,7 +254,6 @@ Himalaya
 Everest
 Montagnes_Rocheuses
 Art
-Histoire_de_l'art
 Esthétique
 Bibliothèque
 Musée
@@ -397,8 +383,6 @@ Upanishad
 Krishna
 Kali
 Islam
-Piliers_de_l'islam
-Courants_de_l'islam
 Coran
 Jaïnisme
 Judaïsme
@@ -509,7 +493,6 @@ Féminisme
 Liberté
 Esclavage
 Mondialisation
-Droits_de_l'homme
 Aide_humanitaire
 Droit
 Peine_de_mort
@@ -541,7 +524,6 @@ Chasse
 Agriculture
 Élevage
 Domestication
-Histoire_de_l'agriculture
 Construction
 Usine
 Pêche
@@ -581,7 +563,6 @@ Armée
 Organisations_politiques_et_gouvernementales_spécifiques
 Union_européenne
 Fonds_monétaire_international
-Organisation_du_traité_de_l'Atlantique_nord
 Prix_Nobel
 Organisation_des_Nations_unies
 Organisation_mondiale_de_la_santé
@@ -593,7 +574,6 @@ Psychologie
 Sociologie
 Maladies
 Allergie
-Maladie_d'Alzheimer
 Asthme
 Cécité
 Cancer
@@ -661,7 +641,6 @@ Vénus
 Terre
 Lune
 Mars
-Ceinture_d'astéroïdes
 Jupiter
 Saturne
 Uranus
@@ -817,7 +796,6 @@ Masse
 Matière
 État_de_la_matière
 Mesure_physique
-Système_international_d'unités
 Mouvement
 Mécanique_quantique
 Son
@@ -908,7 +886,6 @@ Arme_à_feu
 Couteau
 Arme_nucléaire
 Épée
-Char_d'assaut
 Bougie
 Feu
 Explosif
@@ -947,7 +924,6 @@ Division
 Fraction
 Pourcentage
 Exponentiation
-Racine_d'un_nombre
 Combinatoire
 Équation
 Fonction
@@ -984,7 +960,6 @@ Table_de_constantes_mathématiques
 Chiffre
 Nombre_complexe
 Nombre_réel
-eNombre_d'or
 Pi
 Nombre_rationnel
 Entier_relatif

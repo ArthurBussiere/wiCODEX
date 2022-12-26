@@ -171,7 +171,8 @@ footer{
     text-decoration: none;}
 
 table th {
-    padding-bottom: 2%;
+    padding-bottom: 1%;
+    padding-top: 1%;
     border-bottom: 1px solid aliceblue;
 }
 
@@ -244,6 +245,11 @@ span{text-align: center;}
     justify-content: center;
     width : calc(200px + 20vw);
     margin:5vw auto;
+    background-color: aliceblue;
+    color: black;
+    padding: 1%;
+    border-radius: 2%;
+
 }
 
 #win_modal{font-size: x-large;}

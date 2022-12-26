@@ -1,15 +1,15 @@
 
 
 
-    var spans = document.getElementsByTagName('span')           //<---- all word in article are wrapped in span
-    var guessWords = {};                                        //<---- the dico of all words tested by users (saved)
+    let spans = document.getElementsByTagName('span')           //<---- all word in article are wrapped in span
+    let guessWords = {};                                        //<---- the dico of all words tested by users (saved)
 
-    var slideshowIndex = 1;                                     //<----
-    var slideshowArray = [];                                    //<---- Used to swap between Highlighted words in article
-    var slideshowWord = ""                                      //<----
+    let slideshowIndex = 1;                                     //<----
+    let slideshowArray = [];                                    //<---- Used to swap between Highlighted words in article
+    let slideshowWord = ""                                      //<----
 
-    var checkWin = [];                                          //<---- Test if all title word have been found
-    var stats = {};                                             //<---- stats of previous word found by user (saved)
+    let checkWin = [];                                          //<---- Test if all title word have been found
+    let stats = {};                                             //<---- stats of previous word found by user (saved)
 
     const titleWords = document.getElementsByClassName('titleword');
     const contentArticle = (document.getElementById('content-article').textContent.toLowerCase()).normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -56,8 +56,8 @@
             span.classList.remove("clicked")
         }
 
-        var input = document.getElementById('word_submit123');
-        var word = formalize(input.value);
+        let input = document.getElementById('word_submit123');
+        let word = formalize(input.value);
         let numberOccurence = 0;
         
 
@@ -66,7 +66,7 @@
 
             if (special_words.indexOf(word) == -1){
 
-                for (var i = 0, len = spans.length; i < len; ++i) {
+                for (let i = 0, len = spans.length; i < len; ++i) {
 
                     if (formalize(spans[i].innerText).length == word.length){
 
@@ -228,7 +228,7 @@
 
             if (special_words.indexOf(word) == -1){
 
-                for (var i = 0, len = spans.length; i < len; ++i) {
+                for (let i = 0, len = spans.length; i < len; ++i) {
 
                     if (formalize(spans[i].innerText).length == word.length){
 
