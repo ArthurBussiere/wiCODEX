@@ -8,11 +8,11 @@
   <link href={{ url_for('static', filename='styles.css' ) }} rel="stylesheet" type="text/css">
   
   <link rel="shortcut icon" href="#">
-
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src={{ url_for('static', filename='scripts.js' ) }}></script>
 </head>
 
-<script src={{ url_for('static', filename='loadscript.js' ) }}></script>
+<!-- <script src={{ url_for('static', filename='loadscript.js' ) }}></script> -->
 
 <body>
   <div id="chargement"></div>
@@ -114,7 +114,4 @@
     <button id="hideWin" onclick="hideMask()">Close</button>
   </div>
 </div> -->
-
-<script src={{ url_for('static', filename='scripts.js' ) }} charset="utf-8"></script>
-
 </html>

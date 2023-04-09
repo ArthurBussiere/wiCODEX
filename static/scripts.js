@@ -1,8 +1,11 @@
+
+
+
 const special_words = [
   'la', 'le', 'les', 'de', 'des', 'un', 'une', 'y', 'ce', 'ci', 'se', 'ceux', 'celle', 'celles',
   'mais', 'ou', 'et', 'donc', 'or', 'ni', 'car', 'du', 'en', 'à', "d'", "l'", "qu'", "s'", "m'", "n'",
   "c'", "jusqu'", 'est', 'était', 'comme', 'entre', 'avec', 'sans', 'dans', 'pour', 'contre', 'par',
-  'après', 'avant', 'a', 'au', 'tous', 'tout', 'toute', 'toutes,', 'qui', 'que', 'quoi', 'quand', 'dont',
+  'apres', 'avant', 'a', 'au', 'tous', 'tout', 'toute', 'toutes,', 'qui', 'que', 'quoi', 'quand', 'dont',
   'où', 'on','ces', 'celui', 'ça', 'sa', 'ses', 'tant', 'trop', 'si', 'non', 'oui',
   'plus', 'moins', 'aussi', 'autant', 'peu', 'beaucoup', 'encore', 'toujours', 'jamais', 'déjà', 'hier',
   'autre', 'autres', 'même', 'mêmes', 'meme', 'memes', 'outre', 'ainsi', 'alors', 'bien', 'bientôt', 'bon', 'sur', 'sous',
@@ -135,10 +138,13 @@ function hiddenWordDiscover(word) {
   }
 }
 
+
 function newWord() {
   event.preventDefault()
 
   const submit_word = formalize($('#submitted_word').val())
+  
+  console.log(submit_word)
 
   if (submit_word.length >= 1) {
     if (special_words.includes(submit_word)) {
@@ -163,6 +169,8 @@ function showGuessTable(submitted_words) {
   let guess_table_content = ``
   let i = 1
   for (let word in submitted_words) {
+      // word is equal to his special word
+    
     guess_table_content += `<tr>
     <td>${i}</td>
     <td><a class="clickable" onclick="clickOnWord('${word}')" id="table-word-${word}">${word}</a></td>
@@ -217,13 +225,13 @@ $('html').click(function (e) {
 })
 
 
-class Word {
+// class Word {
 
-  constructor(char, type,) {
-    this.char = char
-    this.type = type
-  }
+//   constructor(char, type,) {
+//     this.char = char
+//     this.type = type
+//   }
 
   
-}
+// }
 
