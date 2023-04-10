@@ -6,17 +6,18 @@ const special_words = [
   'mais', 'ou', 'et', 'donc', 'or', 'ni', 'car', 'du', 'en', 'à', "d'", "l'", "qu'", "s'", "m'", "n'",
   "c'", "jusqu'", 'est', 'était', 'comme', 'entre', 'avec', 'sans', 'dans', 'pour', 'contre', 'par',
   'apres', 'avant', 'a', 'au', 'tous', 'tout', 'toute', 'toutes,', 'qui', 'que', 'quoi', 'quand', 'dont',
-  'où', 'on','ces', 'celui', 'ça', 'sa', 'ses', 'tant', 'trop', 'si', 'non', 'oui',
+  'où', 'on','ces', 'celui', 'ça', 'sa', 'ses', 'tant', 'trop', 'si', 'non', 'oui', 'pas',
   'plus', 'moins', 'aussi', 'autant', 'peu', 'beaucoup', 'encore', 'toujours', 'jamais', 'déjà', 'hier',
   'autre', 'autres', 'même', 'mêmes', 'meme', 'memes', 'outre', 'ainsi', 'alors', 'bien', 'bientôt', 'bon', 'sur', 'sous',
-  'je', 'tu', 'il', 'elle', 'nous', 'vous', 'ils', 'elles', 'moi', 'toi', 'lui', 'eux', 'leur', 'leurs', 'parce'
+  'je', 'tu', 'il', 'elle', 'nous', 'vous', 'ils', 'elles', 'moi', 'toi', 'lui', 'eux', 'leur', 'leurs', 'parce', 'être', 'avoir'
 ]
 
 const special_characters = [
   '.', ',', ';', ':', '!', '?', '(', ')', '[', ']', '{', '}', '«', '»', '“', '”', '’', '‘', '…', '–', '—', '-', '+', '==', '===', '===='
 ]
 
-const singular_words = ['temps', 'univers', 'obus', 'français', 'corps']
+const singular_words = ['temps', 'univers', 'obus', 'francais', 'corps', 'hors', 'souris', 'pays', 'heros', 'devis',
+     'radis', 'tapis', 'paradis', 'paris' ]
 
 
 let article = {}
@@ -132,7 +133,13 @@ function hiddenWordDiscover(word) {
     }
   }
   //add word in submitted_words 
-  submitted_words[removePlural(word)] = {
+
+  if (!(word in singular_words)) {
+    word = removePlural(word)
+  }
+
+
+  submitted_words[word] = {
     submitted: true,
     hits: word_hits_count,
   }
